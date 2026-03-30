@@ -26,6 +26,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gojo-vless:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gojo-vless-core_v3:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
