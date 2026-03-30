@@ -1,24 +1,28 @@
 {
   "log": { "level": "error", "timestamp": false },
   "inbounds": [{
-    "type": "shadowsocks",
-    "tag": "ss-in",
+    "type": "vless",
+    "tag": "vless-in",
     "listen": "0.0.0.0",
     "listen_port": 8080,
-    "method": "chacha20-ietf-poly1305",
-    "password": "Limitless",
     "sniff": true,
     "sniff_override_destination": false,
     "sniff_timeout": "300ms",
+    "users": [{ "uuid": "9c5adfa3-2920-49dd-9fef-9d2272922110" }],
     "transport": {
       "type": "ws",
-      "path": "/gojo/cursed_technique/combine",
+      "path": "/gojo/domain/expansion",
       "max_early_data": 2048,
       "early_data_header_name": "Sec-WebSocket-Protocol"
     },
     "multiplex": {
       "enabled": true,
-      "padding": true
+      "padding": true,
+      "brutal": {
+        "enabled": false,
+        "up_mbps": 100,
+        "down_mbps": 100
+      }
     }
   }],
   "outbounds": [
