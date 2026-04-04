@@ -10,27 +10,13 @@
     "sniff_timeout": "300ms",
     "users": [{ "uuid": "9c5adfa3-2920-49dd-9fef-9d2272922110" }],
     "transport": {
-      "type": "ws",
+      "type": "httpupgrade",
       "path": "/gojo/domain/expansion",
-      "max_early_data": 2048,
-      "early_data_header_name": "Sec-WebSocket-Protocol"
-    },
-    "multiplex": {
-      "enabled": true,
-      "padding": true,
-      "brutal": {
-        "enabled": false,
-        "up_mbps": 100,
-        "down_mbps": 100
-      }
+      "host": "google.com"
     }
   }],
   "outbounds": [
-    {
-      "type": "direct",
-      "tag": "direct",
-      "domain_strategy": "prefer_ipv4"
-    },
+    { "type": "direct", "tag": "direct", "domain_strategy": "prefer_ipv4" },
     { "type": "block", "tag": "block" }
   ],
   "route": {
