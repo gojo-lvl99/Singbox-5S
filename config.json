@@ -1,15 +1,14 @@
 {
-  "log": { "level": "error", "timestamp": false },
+  "log": { "level": "info" },
   "inbounds": [{
-    "type": "shadowsocks",
-    "tag": "ss-in",
-    "listen": "0.0.0.0",
+    "type": "vless",
+    "tag": "vless-in",
+    "listen": "::",
     "listen_port": 8080,
-    "method": "chacha20-ietf-poly1305",
-    "password": "SS..[qM7vv8Cfz.me_gg!KLI$ax94gsT1<2}@{;5J=ZG",
+    "users": [{ "uuid": "9c5adfa3-2920-49dd-9fef-9d2272922110" }],
     "transport": {
-      "type": "httpupgrade",
-      "path": "/gojo/cursed_technique/combine"
+      "type": "ws",
+      "path": "/gojo/domain/expansion"
     }
   }],
   "outbounds": [{ "type": "direct", "tag": "direct" }]
