@@ -7,24 +7,10 @@
     "listen_port": 8080,
     "method": "chacha20-ietf-poly1305",
     "password": "SS..[qM7vv8Cfz.me_gg!KLI$ax94gsT1<2}@{;5J=ZG",
-    "sniff": true,
-    "sniff_override_destination": false,
-    "sniff_timeout": "300ms",
     "transport": {
       "type": "httpupgrade",
-      "path": "/gojo/cursed_technique/combine",
+      "path": "/gojo/cursed_technique/combine"
     }
   }],
-  "outbounds": [
-    { "type": "direct", "tag": "direct", "domain_strategy": "prefer_ipv4" },
-    { "type": "block", "tag": "block" }
-  ],
-  "route": {
-    "rules": [
-      { "geoip": "private", "outbound": "block" },
-      { "protocol": "dns", "outbound": "direct" }
-    ],
-    "final": "direct",
-    "auto_detect_interface": true
-  }
+  "outbounds": [{ "type": "direct", "tag": "direct" }]
 }
