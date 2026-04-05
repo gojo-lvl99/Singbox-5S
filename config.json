@@ -1,29 +1,41 @@
 {
-  "log": { "level": "error", "timestamp": false },
-  "inbounds": [{
-    "type": "vmess",
-    "tag": "vmess-in",
-    "listen": "0.0.0.0",
-    "listen_port": 8080,
-    "sniff": true,
-    "sniff_override_destination": false,
-    "sniff_timeout": "300ms",
-    "users": [{ "uuid": "9c5adfa3-2920-49dd-9fef-9d2272922110", "alterId": 0 }],
-    "transport": {
-      "type": "ws",
-      "path": "/gojo/hollow_technique/combine"
+  "log": {
+    "level": "error",
+    "timestamp": false
+  },
+  "inbounds": [
+    {
+      "type": "vmess",
+      "tag": "vmess-in",
+      "listen": "0.0.0.0",
+      "listen_port": 8080,
+      "sniff": true,
+      "sniff_override_destination": false,
+      "sniff_timeout": "300ms",
+      "users": [
+        {
+          "uuid": "9c5adfa3-2920-49dd-9fef-9d2272922110"
+        }
+      ],
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/gojo/domain/expansion"
+      },
+      "multiplex": {
+        "enabled": true,
+        "padding": true,
+        "brutal": {
+          "enabled": false,
+          "up_mbps": 80,
+          "down_mbps": 300
+        }
+      }
     }
-  }],
-  "outbounds": [
-    { "type": "direct", "tag": "direct", "domain_strategy": "prefer_ipv4" },
-    { "type": "block", "tag": "block" }
   ],
-  "route": {
-    "rules": [
-      { "geoip": "private", "outbound": "block" },
-      { "protocol": "dns", "outbound": "direct" }
-    ],
-    "final": "direct",
-    "auto_detect_interface": true
-  }
-}
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct",
+      "domain_strategy": "prefer_ipv4"
+    },
+    {
