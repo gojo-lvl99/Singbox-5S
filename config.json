@@ -1,30 +1,30 @@
 {
-  "log": { "level": "error" },
-  "inbounds": [
-    {
-      "type": "shadowsocks",
-      "tag": "ss-in",
-      "listen": "0.0.0.0",
-      "listen_port": 8080,
-      "method": "2022-blake3-aes-128-gcm",
-      "password": "vS0m6m9X4m7fN9zJ8kL2Pw==",
-      "sniff": true,
-      "transport": {
-        "type": "httpupgrade",
-        "path": "/secret-tunnel"
-      },
-      "multiplex": {
-        "enabled": true,
-        "padding": true,
-        "brutal": {
-          "enabled": true,
-          "up_mbps": 60,
-          "down_mbps": 600
-        }
-      }
+  "log": { "level": "error", "timestamp": false },
+  "inbounds": [{
+    "type": "shadowsocks",
+    "tag": "ss-in",
+    "listen": "0.0.0.0",
+    "listen_port": 8080,
+    "method": "chacha20-ietf-poly1305",
+    "password": "SS..[qM7vv8Cfz.me_gg!KLI$ax94gsT1<2}@{;5J=ZG",
+    "sniff": true,
+    "sniff_override_destination": false,
+    "sniff_timeout": "300ms",
+    "transport": {
+      "type": "httpupgrade",
+      "path": "/gojo/cursed_technique/combine",
     }
-  ],
+  }],
   "outbounds": [
-    { "type": "direct" }
-  ]
+    { "type": "direct", "tag": "direct", "domain_strategy": "prefer_ipv4" },
+    { "type": "block", "tag": "block" }
+  ],
+  "route": {
+    "rules": [
+      { "geoip": "private", "outbound": "block" },
+      { "protocol": "dns", "outbound": "direct" }
+    ],
+    "final": "direct",
+    "auto_detect_interface": true
+  }
 }
