@@ -3,22 +3,23 @@
   "inbounds": [
     {
       "type": "shadowsocks",
-      "method": "2022-blake3-aes-128-gcm",
-      "password": "vS0m6m9X4m7fN9zJ8kL2Pw==", 
+      "tag": "ss-in",
       "listen": "0.0.0.0",
       "listen_port": 8080,
+      "method": "2022-blake3-aes-128-gcm",
+      "password": "vS0m6m9X4m7fN9zJ8kL2Pw==",
       "sniff": true,
       "transport": {
         "type": "httpupgrade",
-        "path": "/api/v1/tunnel"
+        "path": "/secret-tunnel"
       },
       "multiplex": {
         "enabled": true,
         "padding": true,
         "brutal": {
           "enabled": true,
-          "up_mbps": 50,
-          "down_mbps": 500
+          "up_mbps": 60,
+          "down_mbps": 600
         }
       }
     }
