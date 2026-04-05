@@ -1,15 +1,29 @@
 {
-  "log": { "level": "info" },
+  "log": { "level": "error", "timestamp": false },
   "inbounds": [{
-    "type": "vless",
-    "tag": "vless-in",
-    "listen": "::",
+    "type": "trojan",
+    "tag": "trojan-in",
+    "listen": "0.0.0.0",
     "listen_port": 8080,
-    "users": [{ "uuid": "9c5adfa3-2920-49dd-9fef-9d2272922110" }],
+    "sniff": true,
+    "sniff_override_destination": false,
+    "sniff_timeout": "300ms",
+    "users": [{ "password": "SS..[qM7vv8Cfz.me_gg!KLI$ax94gsT1<2}@{;5J=ZG" }],
     "transport": {
-      "type": "ws",
-      "path": "/gojo/domain/expansion"
+      "type": "httpupgrade",
+      "path": "/gojo/infinite/six_eyes"
     }
   }],
-  "outbounds": [{ "type": "direct", "tag": "direct" }]
+  "outbounds": [
+    { "type": "direct", "tag": "direct", "domain_strategy": "prefer_ipv4" },
+    { "type": "block", "tag": "block" }
+  ],
+  "route": {
+    "rules": [
+      { "geoip": "private", "outbound": "block" },
+      { "protocol": "dns", "outbound": "direct" }
+    ],
+    "final": "direct",
+    "auto_detect_interface": true
+  }
 }
