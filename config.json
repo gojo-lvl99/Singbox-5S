@@ -10,7 +10,7 @@
     "sniff_timeout": "300ms",
     "users": [{ "password": "SS..[qM7vv8Cfz.me_gg!KLI$ax94gsT1<2}@{;5J=ZG" }],
     "transport": {
-      "type": "httpupgrade",
+      "type": "ws",
       "path": "/gojo/infinite/six_eyes"
     }
   }],
