@@ -1,8 +1,11 @@
 {
+  // Runtime logging. Keep warnings only to reduce container log volume.
   "log": {
     "level": "warn",
     "timestamp": false
   },
+
+  // Cloud Run receives WebSocket traffic on the configured container port.
   "inbounds": [
     {
       "type": "vless",
@@ -11,6 +14,7 @@
       "listen_port": 8080,
       "users": [
         {
+          // Replace this UUID when provisioning a new client identity.
           "uuid": "123a1567-0f1b-4d3d-baaa-a77e537e4806"
         }
       ],
@@ -18,12 +22,15 @@
         "type": "ws",
         "path": "/gojo/limitless-infinity"
       },
+      // Enable sing-box multiplexing and WebSocket padding.
       "multiplex": {
         "enabled": true,
         "padding": true
       }
     }
   ],
+
+  // Resolve DNS locally inside the container.
   "dns": {
     "servers": [
       {
@@ -32,6 +39,8 @@
       }
     ]
   },
+
+  // Direct is the default route; block is available for explicit deny rules.
   "outbounds": [
     {
       "type": "direct",
@@ -46,6 +55,8 @@
       "tag": "block"
     }
   ],
+
+  // Keep the final outbound explicit. Add routing rules here when needed.
   "route": {
     "rules": [],
     "final": "direct"
