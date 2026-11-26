@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # Pipeline : sing-box Cloud Run container validation and delivery
-# Purpose  : Validate workflow, Dockerfile, strict JSON, and sing-box config.
+# Purpose  : Validate workflow, Dockerfile, and sing-box JSONC configuration.
 #            Build a local test image before authenticating and pushing.
 # Triggers : Push to main/update branches; pull requests targeting main.
 # Secrets  : DOCKERHUB_USERNAME, DOCKERHUB_TOKEN (main push only)
@@ -42,11 +42,8 @@ jobs:
       - name: Run Dockerfile build checks
         run: docker buildx build --check --build-arg BUILDKIT_DOCKERFILE_CHECK=error=true .
 
-      # config.json is strict JSON; do not strip or allow JSONC comments.
-      - name: Validate JSON syntax
-        run: jq -e . config.json > /dev/null
-
-      # Validate the configuration with the exact sing-box version used by the image.
+      # sing-box accepts comments in JSON configuration; jq does not.
+      # Use the pinned sing-box parser for syntax and semantic validation.
       - name: Validate sing-box configuration
         run: |
           curl -fsSL "https://github.com/SagerNet/sing-box/releases/download/v1.14.4/sing-box-1.14.4-linux-amd64.tar.gz" -o /tmp/sing-box.tar.gz
