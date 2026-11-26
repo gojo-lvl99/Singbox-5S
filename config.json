@@ -24,11 +24,22 @@
       }
     }
   ],
+  "dns": {
+    "servers": [
+      {
+        "type": "local",
+        "tag": "local"
+      }
+    ]
+  },
   "outbounds": [
     {
       "type": "direct",
       "tag": "direct",
-      "domain_strategy": "prefer_ipv4"
+      "domain_resolver": {
+        "server": "local",
+        "strategy": "prefer_ipv4"
+      }
     },
     {
       "type": "block",
