@@ -1,4 +1,4 @@
-FROM alpine:3.25 AS downloader
+FROM alpine:3.24.4 AS downloader
 ARG SINGBOX_VERSION=1.14.4
 ARG TARGETARCH=amd64
 RUN apk add --no-cache wget ca-certificates \
@@ -8,7 +8,7 @@ RUN apk add --no-cache wget ca-certificates \
     && mv /tmp/sing-box-*/sing-box /sing-box \
     && chmod +x /sing-box
 
-FROM alpine:3.25
+FROM alpine:3.24.4
 RUN apk add --no-cache ca-certificates
 COPY --from=downloader /sing-box /usr/local/bin/sing-box
 COPY config.json /etc/sing-box/config.json
