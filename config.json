@@ -20,12 +20,7 @@
       },
       "multiplex": {
         "enabled": true,
-        "padding": true,
-        "brutal": {
-          "enabled": true,
-          "up_mbps": 500,
-          "down_mbps": 500
-        }
+        "padding": true
       }
     }
   ],
