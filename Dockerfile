@@ -11,11 +11,11 @@ ARG SINGBOX_VERSION=1.14.4
 ARG TARGETARCH=amd64
 
 # Install download and certificate tools, then extract the release binary.
-RUN apk add --no-cache wget ca-certificates \\
-    && wget -qO /tmp/sb.tar.gz \\
-       "https://github.com/SagerNet/sing-box/releases/download/v${SINGBOX_VERSION}/sing-box-${SINGBOX_VERSION}-linux-${TARGETARCH}.tar.gz" \\
-    && tar -xzf /tmp/sb.tar.gz -C /tmp \\
-    && mv /tmp/sing-box-*/sing-box /sing-box \\
+RUN apk add --no-cache wget ca-certificates \
+    && wget -qO /tmp/sb.tar.gz \
+       "https://github.com/SagerNet/sing-box/releases/download/v${SINGBOX_VERSION}/sing-box-${SINGBOX_VERSION}-linux-${TARGETARCH}.tar.gz" \
+    && tar -xzf /tmp/sb.tar.gz -C /tmp \
+    && mv /tmp/sing-box-*/sing-box /sing-box \
     && chmod +x /sing-box
 
 # Runtime stage: use Alpine with only the CA certificates required at runtime.
